@@ -37,6 +37,9 @@ getBlock <- function(x,y,z, include_style = TRUE)
     x <- floor(as.numeric(x))
     y <- floor(as.numeric(y))
     z <- floor(as.numeric(z))
+
+    if(any(is.na(c(x,y,z)))) stop(paste('x, y, z must not be NA, currently:', x,y,z))
+
     result <- mc_sendreceive(merge_data("world.getBlockWithData", x, y, z))
 
     # convert to vector of length 2
